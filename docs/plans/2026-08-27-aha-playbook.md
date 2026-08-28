@@ -15,7 +15,7 @@
 - Repo: `codingfunc/aha-playbook`, private, default branch `master`.
 - Marketplace name: `aha-playbook`. Plugin names: `playbook-core`, `playbook-eng`, `playbook-design`, `playbook-projects`.
 - **Skill frontmatter is restricted to `name` and `description` only.** No `allowed-tools`, `context`, `disable-model-invocation`, `user-invocable`, `paths`, or `model`. This keeps skills consumable by Codex, Cursor, Gemini, and OpenCode.
-- **Plugin manifests omit the `version` field** so `claude plugin update` is never blocked by a pin.
+- **Plugin manifests carry a semver `version`** (`0.1.0` at first release), bumped per release. An earlier version of this plan said to omit it; that was withdrawn during Task 1 because `claude plugin validate --strict` rejects a manifest without one, and a declared version does not block `claude plugin update`.
 - Kernel text lives in `hooks/kernel.md` as prose, never embedded in the hook script.
 - **Hooks emit only `hookSpecificOutput.additionalContext`.** Claude Code reads both `additional_context` and `hookSpecificOutput` *without deduplication* — emitting both double-injects the kernel.
 - **Hook scripts use `printf`, not heredocs.** Heredocs hang on bash 5.3+ (superpowers issue #571).

@@ -205,8 +205,15 @@ claude plugin install playbook-eng@aha-playbook
 `scripts/install.sh` wraps this. `playbook-core` is enabled at user scope; the domain
 plugins are enabled at user or project scope as appropriate.
 
-Updates are `claude plugin update`, which pulls from git. Plugin manifests omit a pinned
-`version` field so updates are not blocked.
+Updates are `claude plugin update`, which pulls from git. Plugin manifests carry a
+semver `version`, bumped per release.
+
+This corrects an earlier version of this spec, which said manifests should omit
+`version` so that updates were not blocked. That was wrong on two counts:
+`claude plugin validate --strict` rejects a manifest without a version, and plugins
+that declare one update in place regardless — `superpowers` (6.3.0) and `dart-flutter`
+(1.0.1) both do. `claude plugin tag` exists specifically to validate that a plugin's
+declared version agrees with its marketplace entry.
 
 ## Consequences
 
