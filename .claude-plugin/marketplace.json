@@ -1,0 +1,30 @@
+{
+  "name": "aha-playbook",
+  "description": "Engineering, design, and project practices as installable plugins",
+  "owner": {
+    "name": "Hannan",
+    "url": "https://github.com/codingfunc"
+  },
+  "plugins": [
+    {
+      "name": "playbook-core",
+      "source": "./plugins/playbook-core",
+      "description": "Domain-neutral working agreement: stop conditions, work gates, communication"
+    },
+    {
+      "name": "playbook-eng",
+      "source": "./plugins/playbook-eng",
+      "description": "Software engineering practices: design gates, code quality, refactoring, testing, Dart and Flutter conventions"
+    },
+    {
+      "name": "playbook-design",
+      "source": "./plugins/playbook-design",
+      "description": "UI and UX design practices"
+    },
+    {
+      "name": "playbook-projects",
+      "source": "./plugins/playbook-projects",
+      "description": "Practices for non-software projects"
+    }
+  ]
+}

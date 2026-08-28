@@ -1,0 +1,11 @@
+{
+  "name": "playbook-design",
+  "version": "0.1.0",
+  "description": "UI and UX design practices",
+  "author": {
+    "name": "Hannan"
+  },
+  "homepage": "https://github.com/codingfunc/aha-playbook",
+  "repository": "https://github.com/codingfunc/aha-playbook",
+  "keywords": ["practices", "design", "ux"]
+}

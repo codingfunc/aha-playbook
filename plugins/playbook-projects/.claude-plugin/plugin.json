@@ -1,0 +1,11 @@
+{
+  "name": "playbook-projects",
+  "version": "0.1.0",
+  "description": "Practices for non-software projects",
+  "author": {
+    "name": "Hannan"
+  },
+  "homepage": "https://github.com/codingfunc/aha-playbook",
+  "repository": "https://github.com/codingfunc/aha-playbook",
+  "keywords": ["practices", "projects"]
+}
