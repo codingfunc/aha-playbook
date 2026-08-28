@@ -134,10 +134,10 @@ this work.
 | `code-quality` | Clean, modular, error-handled code; SOLID; ACID for database design |
 | `modular-design` | Modularity and abstraction, expandability, robustness to change |
 | `refactoring-discipline` | Do not improve adjacent code; match existing style; mention dead code rather than deleting; remove only orphans your own change created |
-| `code-comments` | Minimal, precise comments; only non-obvious constraints, invariants, or load-bearing why |
+| `code-comments` | Minimal, precise comments; only non-obvious constraints, invariants, or load-bearing why. Exception: public and exported Dart APIs are documented by default (see `dart-flutter-conventions`) |
 | `testing-standards` | Never mock a service class in integration tests; mock only low-level clients (GraphQL, REST) |
 | `token-economy` | Targeted reads over whole files; filter build and test output to failures; treat generated artifacts as write-only |
-| `dart-flutter-conventions` | Style guide, package management, Dart and Flutter best practices, API design, lint rules, code generation, `dart_format` / `dart_fix` / `analyze_files` |
+| `dart-flutter-conventions` | Style guide, package management, Dart and Flutter best practices, API design, lint rules, code generation, `dart_format` / `dart_fix` / `analyze_files`, public API documentation |
 | `flutter-architecture` | Layered architecture, state management, data flow, routing, serialization, logging, testing |
 | `flutter-theming` | `ThemeData` and Material 3, design tokens via `ThemeExtension`, `WidgetStateProperty`, overflow-safe layout, colour, typography, accessibility |
 
@@ -158,6 +158,13 @@ rules were wanted.
 
 The tool guidance in that section (`dart_format`, `dart_fix`, `analyze_files`) is kept
 and moves to `dart-flutter-conventions`.
+
+Lines 712–764 (Documentation) are also not migrated intact. "Always document
+public APIs" and "consider documenting private APIs as well" conflict with the
+minimal-comment rule. The approved resolution: minimal comments everywhere,
+except public and exported Dart APIs, which are documented with parameters,
+returns, and throws. The mechanical dartdoc style rules (lines 730–752) are
+kept.
 
 ### Empty by design
 
