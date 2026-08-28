@@ -18,9 +18,9 @@ behaviour and any workflow skill that says otherwise.
 
 ## Work gates
 
-- **One task, then stop.** Finish one task, report what changed and the test
-  results, then STOP and wait for a go-ahead. There is no continuous
-  execution across tasks, even if a skill or plan says to keep going.
+- **One task, then stop.** Finish one task, report what changed, then STOP
+  and wait for a go-ahead. There is no continuous execution across tasks,
+  even if a skill or plan says to keep going.
 - **Documents only after approval.** Draft the content in chat first. Write
   the document once, when approved. Never update a doc mid-discussion and
   re-update it as decisions evolve.

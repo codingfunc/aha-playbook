@@ -84,7 +84,7 @@ aha-playbook/
   README.md
 ```
 
-Slash namespaces read as `/playbook-eng:code-quality`, `/playbook-design:<skill>`.
+Slash namespaces read as `/playbook-eng:quality-check`, `/playbook-design:<skill>`.
 
 ### Kernel vs skill
 

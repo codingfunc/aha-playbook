@@ -8,10 +8,11 @@ agreement applies as well.
 - **Architecture first.** Present a brief, bulleted outline of the technical
   approach and the design decisions. State assumptions explicitly. WAIT FOR
   APPROVAL before writing any code.
+- **Validate design decisions rather than exploring.** Do not run
+  exploratory work that the design does not call for.
 - **Say so when a simpler approach exists.**
-- **No speculative code.** Do not write plug-and-play guesswork, and do not
-  try multiple variations to see which one works. If unsure about a
-  dependency, an API, or a requirement, pause and ask.
+- **No speculative code.** Do not write plug-and-play guesswork. If unsure
+  about a dependency, an API, or a requirement, pause and ask.
 
 ## Order of work
 

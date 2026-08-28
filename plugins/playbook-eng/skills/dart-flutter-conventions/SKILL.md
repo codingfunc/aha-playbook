@@ -22,7 +22,7 @@ description: Use when writing Dart or Flutter code - project structure, style gu
 * **Widgets are for UI:** Everything in Flutter's UI is a widget. Compose
   complex UIs from smaller, reusable widgets.
 * **Navigation:** Use a modern routing package like `auto_route` or `go_router`.
-  For more guidelines around navigation, see the section on [routing](#routing).
+  For more guidelines around navigation, see the `flutter-architecture` skill.
 
 ## Package Management
 * **Pub Tool:** To manage packages, use the `pub` tool, if available.
@@ -184,6 +184,12 @@ load-bearing why.
 
 For a public API, write a `///` doc comment covering what the function
 expects, what it returns, and what it may throw.
+
+* **Library-level comments are helpful:** Consider adding a doc comment at the
+  library level to provide a general overview.
+* **Include code samples:** Where appropriate, add code samples to illustrate usage.
+* **Place doc comments before annotations:** Documentation should come before
+  any metadata annotations.
 
 Rationale for the exception: a published package API has readers who cannot
 see the implementation. Private code does not.

@@ -26,7 +26,9 @@ run() {
 }
 
 echo "Adding marketplace from: $SOURCE"
-run claude plugin marketplace add "$SOURCE"
+if ! run claude plugin marketplace add "$SOURCE"; then
+  echo "Marketplace already added, continuing."
+fi
 
 for p in "${PLUGINS[@]}"; do
   echo "Installing $p"
@@ -35,6 +37,6 @@ done
 
 echo
 echo "Done. Restart Claude Code to load the plugins."
-echo "playbook-core and playbook-eng are enabled at user scope by default."
+echo "All four plugins are enabled at user scope by default."
 echo "To scope a domain plugin to one project, disable it at user scope and"
 echo "enable it in that project's .claude/settings.json instead."
