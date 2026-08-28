@@ -25,9 +25,15 @@ run() {
   fi
 }
 
-echo "Adding marketplace from: $SOURCE"
-if ! run claude plugin marketplace add "$SOURCE"; then
-  echo "Marketplace already added, continuing."
+# Skip the add when the marketplace is already registered, rather than running it
+# and ignoring the failure — ignoring it would also swallow a bad source, a network
+# error, or an auth failure, and the installs below would then run against a
+# marketplace that was never registered.
+if claude plugin marketplace list 2>/dev/null | grep -qw "$MARKETPLACE"; then
+  echo "Marketplace $MARKETPLACE already registered, skipping add."
+else
+  echo "Adding marketplace from: $SOURCE"
+  run claude plugin marketplace add "$SOURCE"
 fi
 
 for p in "${PLUGINS[@]}"; do
