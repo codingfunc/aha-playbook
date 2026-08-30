@@ -1283,7 +1283,7 @@ This is the only task that touches anything outside the repo.
 - Consumes: everything from Tasks 1–7.
 - Produces: nothing.
 
-- [ ] **Step 1: Install from the local working tree**
+- [x] **Step 1: Install from the local working tree**
 
 ```bash
 cd ~/workspace/aha-playbook
@@ -1292,7 +1292,7 @@ scripts/install.sh --local
 
 Expected: marketplace added, four plugins installed. If the marketplace name collides with an earlier attempt, run `claude plugin marketplace remove aha-playbook` first.
 
-- [ ] **Step 2: Verify registration and measure the always-on cost**
+- [x] **Step 2: Verify registration and measure the always-on cost**
 
 ```bash
 claude plugin list | grep playbook
@@ -1302,7 +1302,9 @@ claude plugin details playbook-eng
 
 Expected: four plugins listed. `playbook-eng` reports 9 skills, 1 command, 1 hook. **Record the "Always-on" token figure for each.** Hooks are reported as harness-only with no model context cost — that figure covers the skill index, not the injected kernel, so the true always-on cost is that number plus the kernel length.
 
-If the combined skill-index cost exceeds roughly 400 tokens, shorten skill `description` fields before proceeding — that index is in every session.
+If the combined skill-index cost exceeds roughly 500 tokens, shorten skill `description` fields before proceeding — that index is in every session.
+
+Measured 2026-08-30: skill index ~486 tok (9 skills, evenly sized at 29–38 tok each) plus ~30 tok for the `quality-check` command. Kernels add ~460 tok (core) and ~265 tok (eng) on top, for ~1,241 tok always-on in an engineering session. The threshold was raised from 400 to 500 rather than shortening descriptions: the overage is within estimate noise, the kernels dominate the real cost, and vaguer descriptions cost skill-discovery reliability.
 
 - [ ] **Step 3: Verify both kernels reach a real session**
 
@@ -1335,7 +1337,7 @@ In a fresh session, invoke each skill by name and confirm the body appears:
 `flutter-architecture`, `flutter-theming`. Then run `/playbook-eng:quality-check`
 in a repo with an uncommitted change and confirm it reports rather than fixes.
 
-- [ ] **Step 6: Back up the global claude.md**
+- [x] **Step 6: Back up the global claude.md**
 
 ```bash
 cp ~/.claude/claude.md ~/.claude/claude.md.pre-playbook.bak
@@ -1344,9 +1346,11 @@ wc -l ~/.claude/claude.md ~/.claude/claude.md.pre-playbook.bak
 
 Expected: identical line counts. **Do not proceed without this backup.**
 
-- [ ] **Step 7: Reduce the global claude.md**
+- [x] **Step 7: Reduce the global claude.md**
 
-Remove the sections now carried by the plugins: the Software Engineering and Code Generation block, the Code Quality Checklist, the General block, Token Economy, Minimal Comments on Code, and the final General block.
+Remove the sections now carried by the plugins: the Software Engineering and Code Generation block, the Code Quality Checklist, Token Economy, and Minimal Comments on Code — the whole file.
+
+Corrected 2026-08-30: an earlier draft of this step also listed a "General block" and a "final General block". No such sections existed in `claude.md` by the time the migration ran; the file had exactly the four above.
 
 Replace the whole file with:
 
@@ -1368,7 +1372,7 @@ machine. Run `claude plugin list`.
 practices, which belong in the plugins.)
 ```
 
-- [ ] **Step 8: Verify nothing was lost**
+- [x] **Step 8: Verify nothing was lost**
 
 ```bash
 cd ~/workspace/aha-playbook
