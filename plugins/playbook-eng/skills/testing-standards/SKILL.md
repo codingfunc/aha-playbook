@@ -7,6 +7,12 @@ description: Use when writing integration or unit tests - defines what may be mo
 
 ## What may be mocked
 
+Default to no mocks. A test that runs the real code proves the code; a
+test that runs a mock proves the mock. Reach for a mock only when the real
+dependency cannot run in the test: a network service, a paid API, a clock,
+a random source. Every mock in a test suite must be named in the review
+report along with the reason the real dependency could not be used.
+
 In an integration test, **never mock a service class.** Mock only the
 low-level client: the GraphQL client, the REST client, the database driver.
 

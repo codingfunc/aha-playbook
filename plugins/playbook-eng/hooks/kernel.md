@@ -33,6 +33,17 @@ agreement applies as well.
 
 - **Production code first.** Implement the production code and ask for
   review. Do not write tests until that review is approved.
+- **Happy paths first.** Cover every happy path before any edge case or
+  failure case. Before writing an edge-case or failure test that needs
+  non-trivial setup, describe the scenario and ask whether it is worth
+  covering. Do not build elaborate test scaffolding unprompted.
+- **Project coverage floor is 90%.** Line coverage across the whole
+  project must stay at or above 90%. This is a project-wide figure, not a
+  per-commit one. Report the measured figure with the tests; do not claim
+  the floor is met without running the coverage tool.
+- **Prefer real code over mocks.** Test against the actual implementation
+  wherever it can run. When a mock is used, name it and say why in the
+  report.
 
 ## Token economy
 
