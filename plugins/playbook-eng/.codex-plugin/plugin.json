@@ -1,0 +1,28 @@
+{
+  "name": "playbook-eng",
+  "version": "0.1.0",
+  "description": "Software engineering practices: design gates, code quality, refactoring, testing, Dart and Flutter conventions",
+  "author": {
+    "name": "Hannan"
+  },
+  "homepage": "https://github.com/codingfunc/aha-playbook",
+  "repository": "https://github.com/codingfunc/aha-playbook",
+  "keywords": [
+    "practices",
+    "engineering",
+    "dart",
+    "flutter"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Playbook Engineering",
+    "shortDescription": "Engineering gates, conventions, and diff review.",
+    "longDescription": "Software engineering practices: design gates, code quality, refactoring, testing, Dart and Flutter conventions",
+    "developerName": "Hannan",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Run the quality-check skill on the current diff."
+    ]
+  }
+}

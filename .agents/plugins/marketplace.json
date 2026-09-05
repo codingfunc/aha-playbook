@@ -1,0 +1,56 @@
+{
+  "name": "aha-playbook",
+  "interface": {
+    "displayName": "Aha Playbook"
+  },
+  "plugins": [
+    {
+      "name": "playbook-core",
+      "source": {
+        "source": "local",
+        "path": "./plugins/playbook-core"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "playbook-eng",
+      "source": {
+        "source": "local",
+        "path": "./plugins/playbook-eng"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "playbook-design",
+      "source": {
+        "source": "local",
+        "path": "./plugins/playbook-design"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "playbook-projects",
+      "source": {
+        "source": "local",
+        "path": "./plugins/playbook-projects"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

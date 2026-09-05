@@ -1,0 +1,26 @@
+{
+  "name": "playbook-projects",
+  "version": "0.1.0",
+  "description": "Practices for non-software projects",
+  "author": {
+    "name": "Hannan"
+  },
+  "homepage": "https://github.com/codingfunc/aha-playbook",
+  "repository": "https://github.com/codingfunc/aha-playbook",
+  "keywords": [
+    "practices",
+    "projects"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Playbook Projects",
+    "shortDescription": "Reserved for future non-software project practices.",
+    "longDescription": "Practices for non-software projects",
+    "developerName": "Hannan",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Show the project practices available in this plugin."
+    ]
+  }
+}

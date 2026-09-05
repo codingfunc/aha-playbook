@@ -1,0 +1,25 @@
+{
+  "name": "playbook-core",
+  "version": "0.1.0",
+  "description": "Domain-neutral working agreement: stop conditions, work gates, communication",
+  "author": {
+    "name": "Hannan"
+  },
+  "homepage": "https://github.com/codingfunc/aha-playbook",
+  "repository": "https://github.com/codingfunc/aha-playbook",
+  "keywords": [
+    "practices",
+    "working-agreement"
+  ],
+  "interface": {
+    "displayName": "Playbook Core",
+    "shortDescription": "Working agreement for every task.",
+    "longDescription": "Domain-neutral working agreement: stop conditions, work gates, communication",
+    "developerName": "Hannan",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Apply the core working agreement to this task."
+    ]
+  }
+}

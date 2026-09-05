@@ -1,10 +1,13 @@
 ---
-description: Run the engineering quality checklist against the current diff
+name: quality-check
+description: Use when asked to review the current uncommitted diff against the playbook engineering quality checklist; report findings without changing files
 ---
 
 Review the current uncommitted diff against the playbook quality bar. Read
-the `code-quality`, `refactoring-discipline`, `code-comments`, and
-`testing-standards` skills first, then apply them.
+the [code-quality](../code-quality/SKILL.md),
+[refactoring-discipline](../refactoring-discipline/SKILL.md),
+[code-comments](../code-comments/SKILL.md), and
+[testing-standards](../testing-standards/SKILL.md) skills first, then apply them.
 
 Run `git diff` and `git diff --staged` to see the changes. If both are empty,
 say so and stop.
