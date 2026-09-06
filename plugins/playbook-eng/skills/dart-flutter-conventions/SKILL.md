@@ -70,11 +70,8 @@ description: Use when writing Dart or Flutter code - project structure, style gu
   For large libraries, export smaller, private libraries from a single top-level
   library.
 * **Library Organization:** Group related libraries in the same folder.
-* **API Documentation:** Add documentation comments to all public APIs,
-  including classes, constructors, methods, and top-level functions.
-* **Comments:** Write clear comments for complex or non-obvious code. Avoid
-  over-commenting.
-* **Trailing Comments:** Don't add trailing comments.
+* **Trailing Comments:** Don't add trailing comments. Other commenting rules
+  are under "Documenting public APIs" below.
 * **Async/Await:** Ensure proper use of `async`/`await` for asynchronous
   operations with robust error handling.
     * Use `Future`s, `async`, and `await` for asynchronous operations.

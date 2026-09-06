@@ -28,6 +28,3 @@ obvious.
 Handle the errors the code can actually encounter. Do not add speculative
 handling for conditions that cannot arise — that is noise, and it hides the
 paths that matter.
-
-Never invent a threshold, retry count, timeout, or backoff value. If the spec
-does not state it, stop and ask.

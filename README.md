@@ -64,7 +64,7 @@ harnesses. See the [import guide](https://learn.chatgpt.com/docs/import).
 | Plugin | Contents |
 | --- | --- |
 | `playbook-core` | Domain-neutral working agreement, injected into every session |
-| `playbook-eng` | Engineering gates and 12 skills: six engineering practices, three Dart and Flutter skills, two Swift skills, and quality-check |
+| `playbook-eng` | Engineering gates and 11 skills: five engineering practices, three Dart and Flutter skills, two Swift skills, and quality-check |
 | `playbook-design` | UI and UX practices (empty; grows as practices are decided) |
 | `playbook-projects` | Non-software project practices (empty) |
 

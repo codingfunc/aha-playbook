@@ -181,11 +181,8 @@ description: Use when structuring a Flutter app or choosing state management, ro
 * **integration_test package:** Use the `integration_test` package from the
   Flutter SDK for integration tests. Add it as a `dev_dependency` in
   `pubspec.yaml` by specifying `sdk: flutter`.
-* **Mocks:** Prefer fakes or stubs over mocks. If mocks are absolutely
-  necessary, use `mockito` or `mocktail` to create mocks for dependencies. While
-  code generation is common for state management (e.g., with `freezed`), try to
-  avoid it for mocks.
-* **Coverage:** Aim for high test coverage.
+* **Mock tooling:** When a mock is justified, use `mocktail` or `mockito`.
+  Avoid code generation for mocks, even where it is used for state management.
 
 See the `testing-standards` skill for the rules on what may be mocked and
 when tests are written. Those rules take precedence over anything above.
