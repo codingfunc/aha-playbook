@@ -18,6 +18,12 @@ cd aha-playbook
 scripts/install.sh
 ```
 
+Add `--explore-haiku` to also install a user-level `Explore` agent pinned to
+Haiku. Since Claude Code 2.1.198 the built-in Explore agent inherits the main
+session's model, so searches bill at that rate; the override keeps them cheap.
+The installer skips the copy if `~/.claude/agents/explore.md` already exists
+with different content.
+
 Or without cloning:
 
 ```bash
@@ -37,6 +43,11 @@ The local installation flow was verified with `codex-cli 0.153.4`.
 scripts/install-codex.sh --dry-run
 scripts/install-codex.sh
 ```
+
+Add `--cheap-agents` to also install user-level `explorer` and `reader`
+agents in `~/.codex/agents/`, pinned to a cheaper model at low reasoning
+effort. The `explorer` file overrides the built-in agent of that name. The
+installer skips a file that already exists with different content.
 
 The installer registers this checkout as the `aha-playbook` marketplace,
 then installs and enables all four plugins for the current Codex user. They
@@ -63,7 +74,7 @@ harnesses. See the [import guide](https://learn.chatgpt.com/docs/import).
 
 | Plugin | Contents |
 | --- | --- |
-| `playbook-core` | Domain-neutral working agreement, injected into every session |
+| `playbook-core` | Domain-neutral working agreement, injected into every session, plus the `reader` agent: a Haiku subagent for bulk file reads and greps |
 | `playbook-eng` | Engineering gates and 11 skills: five engineering practices, three Dart and Flutter skills, two Swift skills, and quality-check |
 | `playbook-design` | UI and UX practices (empty; grows as practices are decided) |
 | `playbook-projects` | Non-software project practices (empty) |
@@ -77,10 +88,13 @@ plugins/<plugin>/
   .claude-plugin/plugin.json          Claude manifest
   .codex-plugin/plugin.json           Codex manifest
   skills/<skill>/SKILL.md             Shared skills, loaded on demand
+  agents/<agent>.md                   Claude Code subagents, where present
   hooks/kernel.md                    Shared always-on rules, where present
   hooks/hooks.json                    Shared SessionStart configuration
   hooks/session-start                 Shared context emitter
 scripts/install.sh                    Claude installer
+scripts/user-agents/explore.md        Explore override, installed by --explore-haiku
+scripts/codex-agents/*.toml           Codex explorer and reader, installed by --cheap-agents
 scripts/install-codex.sh              Codex installer for this checkout
 ```
 

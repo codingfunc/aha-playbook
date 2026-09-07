@@ -1,6 +1,6 @@
 {
   "name": "playbook-core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Domain-neutral working agreement: stop conditions, work gates, communication",
   "author": {
     "name": "Hannan"

@@ -17,7 +17,9 @@ always-on instruction file.
 ## Harness packaging
 
 - Claude Code: `.claude-plugin/marketplace.json` at the repo root and
-  `.claude-plugin/plugin.json` in each plugin.
+  `.claude-plugin/plugin.json` in each plugin. A plugin's `agents/` directory
+  holds Claude Code subagents; their frontmatter is harness-specific and is
+  not part of the portable skill content.
 - Codex: `.agents/plugins/marketplace.json` at the repo root and
   `.codex-plugin/plugin.json` in each plugin. Skill paths point to the same
   `skills/` directories Claude uses.
