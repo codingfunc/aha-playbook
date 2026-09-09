@@ -1,6 +1,6 @@
 ---
 name: code-quality
-description: Use when writing or reviewing any production code - the baseline quality bar covering error handling, SOLID principles, and ACID database design
+description: Use when writing or reviewing any production code - the baseline quality bar covering error handling, SOLID principles, single source of truth, type safety, and ACID database design
 ---
 
 # Code quality
@@ -16,6 +16,18 @@ Follow the coding best practices and design patterns of the language in use.
 - **Liskov substitution** — a subtype is usable anywhere its base type is.
 - **Interface segregation** — many focused interfaces beat one broad one.
 - **Dependency inversion** — depend on abstractions, not concretions.
+
+## Single source of truth
+
+Define each fact once and derive everything else from it. Field
+descriptions, validation rules, and documentation live in one place — the
+schema or model — never duplicated by hand elsewhere.
+
+## Type safety
+
+Static type checking is on at its strictest setting and passes clean. No
+suppressions or `Any` escapes without a comment stating why the checker
+cannot express the type.
 
 ## Database design
 
