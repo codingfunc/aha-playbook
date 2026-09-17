@@ -1,11 +1,18 @@
 {
   "name": "playbook-eng",
-  "version": "0.2.0",
-  "description": "Software engineering practices: design gates, code quality, refactoring, testing, Dart and Flutter conventions",
+  "version": "0.3.0",
+  "description": "Software engineering practices: design gates, code quality, testing, Dart, Flutter, Swift, and SwiftUI",
   "author": {
     "name": "Hannan"
   },
   "homepage": "https://github.com/codingfunc/aha-playbook",
   "repository": "https://github.com/codingfunc/aha-playbook",
-  "keywords": ["practices", "engineering", "dart", "flutter"]
+  "keywords": [
+    "practices",
+    "engineering",
+    "dart",
+    "flutter",
+    "swift",
+    "swiftui"
+  ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "playbook-eng",
-  "version": "0.2.0",
-  "description": "Software engineering practices: design gates, code quality, refactoring, testing, Dart and Flutter conventions",
+  "version": "0.3.0",
+  "description": "Software engineering practices: design gates, code quality, testing, Dart, Flutter, Swift, and SwiftUI",
   "author": {
     "name": "Hannan"
   },
@@ -11,13 +11,15 @@
     "practices",
     "engineering",
     "dart",
-    "flutter"
+    "flutter",
+    "swift",
+    "swiftui"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Playbook Engineering",
     "shortDescription": "Engineering gates, conventions, and diff review.",
-    "longDescription": "Software engineering practices: design gates, code quality, refactoring, testing, Dart and Flutter conventions",
+    "longDescription": "Software engineering practices: design gates, code quality, testing, Dart, Flutter, Swift, and SwiftUI",
     "developerName": "Hannan",
     "category": "Productivity",
     "capabilities": [],

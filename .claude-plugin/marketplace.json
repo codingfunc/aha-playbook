@@ -14,12 +14,12 @@
     {
       "name": "playbook-eng",
       "source": "./plugins/playbook-eng",
-      "description": "Software engineering practices: design gates, code quality, refactoring, testing, Dart and Flutter conventions"
+      "description": "Software engineering practices: design gates, code quality, testing, Dart, Flutter, Swift, and SwiftUI"
     },
     {
       "name": "playbook-design",
       "source": "./plugins/playbook-design",
-      "description": "UI and UX design practices"
+      "description": "UI and UX design practices: accessibility and SwiftUI implementation guidance"
     },
     {
       "name": "playbook-projects",

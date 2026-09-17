@@ -1,7 +1,7 @@
 {
   "name": "playbook-design",
-  "version": "0.1.0",
-  "description": "UI and UX design practices",
+  "version": "0.2.0",
+  "description": "UI and UX design practices: accessibility and SwiftUI implementation guidance",
   "author": {
     "name": "Hannan"
   },
@@ -10,13 +10,14 @@
   "keywords": [
     "practices",
     "design",
-    "ux"
+    "ux",
+    "accessibility"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Playbook Design",
-    "shortDescription": "Reserved for future UI and UX practices.",
-    "longDescription": "UI and UX design practices",
+    "shortDescription": "Accessible interface design and review.",
+    "longDescription": "UI and UX design practices: accessibility and SwiftUI implementation guidance",
     "developerName": "Hannan",
     "category": "Productivity",
     "capabilities": [],

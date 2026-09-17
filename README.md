@@ -30,6 +30,7 @@ Or without cloning:
 claude plugin marketplace add codingfunc/aha-playbook
 claude plugin install playbook-core@aha-playbook
 claude plugin install playbook-eng@aha-playbook
+claude plugin install playbook-design@aha-playbook
 ```
 
 Restart Claude Code afterwards.
@@ -75,8 +76,8 @@ harnesses. See the [import guide](https://learn.chatgpt.com/docs/import).
 | Plugin | Contents |
 | --- | --- |
 | `playbook-core` | Domain-neutral working agreement, injected into every session, plus the `reader` agent: a Haiku subagent for bulk file reads and greps |
-| `playbook-eng` | Engineering gates and 11 skills: five engineering practices, three Dart and Flutter skills, two Swift skills, and quality-check |
-| `playbook-design` | UI and UX practices (empty; grows as practices are decided) |
+| `playbook-eng` | Engineering gates and 14 skills: five engineering practices, three Dart and Flutter skills, five Swift skills, and quality-check |
+| `playbook-design` | Accessibility design and review, with SwiftUI implementation guidance |
 | `playbook-projects` | Non-software project practices (empty) |
 
 ## How it is structured
@@ -99,8 +100,8 @@ scripts/install-codex.sh              Codex installer for this checkout
 ```
 
 Each marketplace points to the same `plugins/` directories. Each skill is
-maintained once. The design and projects plugins remain empty until their
-practices are decided.
+maintained once. The projects plugin remains empty until its practices are
+decided.
 
 Rules that must always fire live in a `SessionStart` hook kernel — one per
 plugin, written as prose in `hooks/kernel.md`. Reference material lives in
@@ -120,6 +121,20 @@ The two hook invocations read and escape their respective kernel files:
 work and memory are proportional to the kernel sizes, with no network calls.
 Skill bodies load only when needed. `AGENTS.md` explains how to maintain this
 repository; it does not install the playbook into other projects.
+
+## Swift and accessibility skills
+
+The Swift and accessibility skills are shared by Claude Code and Codex:
+
+| Skill | Claude Code | Codex |
+| --- | --- | --- |
+| Concurrency correctness | `/playbook-eng:swift-concurrency` | `$playbook-eng:swift-concurrency` |
+| Swift testing | `/playbook-eng:swift-testing` | `$playbook-eng:swift-testing` |
+| SwiftUI performance | `/playbook-eng:swiftui-performance` | `$playbook-eng:swiftui-performance` |
+| Accessibility | `/playbook-design:accessibility` | `$playbook-design:accessibility` |
+
+They also apply when a request matches their descriptions. Each skill loads
+its supporting references only when relevant to the task.
 
 ## Quality check
 
@@ -161,6 +176,7 @@ For Claude marketplace installations:
 ```bash
 claude plugin update playbook-core
 claude plugin update playbook-eng
+claude plugin update playbook-design
 ```
 
 For Codex installations from this checkout, update the checkout and rerun:

@@ -1,11 +1,16 @@
 {
   "name": "playbook-design",
-  "version": "0.1.0",
-  "description": "UI and UX design practices",
+  "version": "0.2.0",
+  "description": "UI and UX design practices: accessibility and SwiftUI implementation guidance",
   "author": {
     "name": "Hannan"
   },
   "homepage": "https://github.com/codingfunc/aha-playbook",
   "repository": "https://github.com/codingfunc/aha-playbook",
-  "keywords": ["practices", "design", "ux"]
+  "keywords": [
+    "practices",
+    "design",
+    "ux",
+    "accessibility"
+  ]
 }
