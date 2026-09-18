@@ -14,7 +14,7 @@
     {
       "name": "playbook-eng",
       "source": "./plugins/playbook-eng",
-      "description": "Software engineering practices: design gates, code quality, testing, Dart, Flutter, Swift, and SwiftUI"
+      "description": "Software engineering practices: design gates, code quality, security, testing, Dart, Flutter, Swift, and SwiftUI"
     },
     {
       "name": "playbook-design",

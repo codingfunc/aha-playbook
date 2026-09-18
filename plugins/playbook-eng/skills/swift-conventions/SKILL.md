@@ -56,6 +56,20 @@ description: Use when writing Swift code - language style, concurrency, error ha
 * **No silent failure:** Every `catch` either recovers meaningfully,
   surfaces the error to the user, or rethrows. Never swallow.
 
+## Security
+* **Keychain for credentials:** Store tokens, passwords, and keys in Keychain
+  Services. `UserDefaults` is unprotected and readable from a device backup.
+* **Build-time configuration:** Supply build-time values through `.xcconfig`
+  files or the environment. A literal in source ships inside the binary.
+* **Keep ATS enabled:** App Transport Security is enforced by default. Do not
+  add an exception to make a change work. Pin certificates only where the
+  project has decided an endpoint warrants it, with a rotation plan.
+* **Validate external input:** Deep links, pasteboard contents, and API
+  payloads are untrusted. Build URLs with `URL(string:)` and handle the
+  optional; never force-unwrap a URL derived from external data.
+
+Platform-neutral rules are in `security`.
+
 ## Testing
 * **Swift Testing framework:** Use Swift Testing (`@Test`, `#expect`) for new
   tests, not XCTest. What may be mocked is governed by `testing-standards`.

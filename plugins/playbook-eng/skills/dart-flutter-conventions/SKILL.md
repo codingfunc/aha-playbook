@@ -107,6 +107,28 @@ description: Use when writing Dart or Flutter code - project structure, style gu
 * **Build Method Performance:** Avoid performing expensive operations, like
   network calls or complex computations, directly within `build()` methods.
 
+## Security
+* **Secure storage for credentials:** Keep tokens, passwords, and keys in the
+  platform keystore via `flutter_secure_storage`. `SharedPreferences` is
+  plain text and survives in device backups.
+* **Build-time configuration:** Pass build-time values with `--dart-define`
+  or `--dart-define-from-file`. A literal in source ships inside the bundle,
+  and `--dart-define` values are still recoverable from a release artifact.
+* **Transport:** Keep certificate validation on; never override
+  `badCertificateCallback` to accept all certificates. Declare any cleartext
+  exception in the Android network security configuration rather than
+  disabling transport checks globally.
+* **Validate external input:** Deep links, platform-channel messages, and API
+  payloads are untrusted. Parse into typed models and handle the failure
+  case; do not cast dynamic JSON straight into a model.
+* **WebView content:** Disable JavaScript unless the feature needs it,
+  restrict navigation to expected origins, and never inject secrets into page
+  content.
+* **Release builds:** Obfuscate and split debug symbols for release builds,
+  and retain the symbol files needed to read crash reports.
+
+Platform-neutral rules are in `security`.
+
 ## API Design Principles
 When building reusable APIs, such as a library, follow these principles.
 
