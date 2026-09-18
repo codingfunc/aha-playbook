@@ -24,6 +24,10 @@ behaviour and any workflow skill that says otherwise.
 - **Documents only after approval.** Draft the content in chat first. Write
   the document once, when approved. Never update a doc mid-discussion and
   re-update it as decisions evolve.
+- **Permission mode is the user's choice.** Never enable auto mode, bypass
+  permissions, or any other mode that widens what runs without asking. The
+  session starts in the mode the user set; if a task needs a different one,
+  say so and let them switch it.
 
 ## Efficiency
 
