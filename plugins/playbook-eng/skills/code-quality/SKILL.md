@@ -1,6 +1,6 @@
 ---
 name: code-quality
-description: Use when writing or reviewing any production code - the baseline quality bar covering error handling, SOLID principles, single source of truth, type safety, and ACID database design
+description: Use when writing or reviewing any production code - the baseline quality bar covering simplicity, error handling, SOLID principles, single source of truth, type safety, and ACID database design
 ---
 
 # Code quality
@@ -16,6 +16,20 @@ Follow the coding best practices and design patterns of the language in use.
 - **Liskov substitution** — a subtype is usable anywhere its base type is.
 - **Interface segregation** — many focused interfaces beat one broad one.
 - **Dependency inversion** — depend on abstractions, not concretions.
+
+## Simplicity
+
+The minimum code that solves the stated problem. Nothing speculative.
+
+- No features beyond what was asked.
+- No abstractions for single-use code. A seam needs a second caller or a
+  named likely change; otherwise it is overhead.
+- No flexibility or configurability that was not requested. This qualifies
+  open/closed above: open for extension does not mean building the
+  extension points now.
+- If it is 200 lines and 50 would do, rewrite it before asking for review.
+
+The test: would a senior engineer call this overcomplicated? If yes, simplify.
 
 ## Single source of truth
 
