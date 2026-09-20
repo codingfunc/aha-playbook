@@ -1,6 +1,6 @@
 ---
 name: security
-description: Use when handling secrets, credentials, network transport, untrusted input, or stored user data, or when reviewing a change for security exposure
+description: Use when handling secrets, credentials, network transport, untrusted input, dependencies, or stored user data, or when reviewing a change for security exposure
 ---
 
 # Security
@@ -33,6 +33,33 @@ whole-system audit.
   content. Validate shape and range, not only type.
 - Fail closed on a validation error. A malformed response surfaces an error;
   it does not produce a partially populated model.
+
+## One validation boundary
+
+Route external input through a single module whose job is validation, rather
+than checking at each call site. Name each validator for what it guards — a
+URL, a path, a label, a payload shape — and give it one behaviour: return the
+validated value, or raise.
+
+The reason: scattered checks cannot be audited. With one module you can read
+every entry point into the system in a single file, and a caller that skips
+it is visible in review.
+
+Validate at the seam, before the consumer runs. A schema check that happens
+after the data has reached the store or the view has prevented nothing.
+
+## Dependencies and supply chain
+
+- A dependency is untrusted code you ship. Audit the declared set for known
+  vulnerabilities in CI, not by hand, and fail the build on a finding.
+- Commit the lockfile and install from it frozen everywhere — local, CI, and
+  release. An unpinned install makes the audit meaningless.
+- Every version floor, cap, and optional extra carries its reason beside it:
+  the CVE it clears, the incompatibility it avoids, the platform that has no
+  prebuilt binary. A bare pin cannot be maintained, because the next person
+  cannot tell whether it is still needed.
+- Run a static analyser over your own source in the same job, and record any
+  skipped rule with the reason.
 
 ## Stored data and diagnostics
 

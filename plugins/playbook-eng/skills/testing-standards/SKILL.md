@@ -19,6 +19,15 @@ The reason: mocking a service class tests that your mock matches your
 assumptions. Mocking at the client boundary leaves the real service logic —
 the part that breaks — under test.
 
+## Isolation
+
+A unit test touches nothing outside the process: no network calls, and no
+filesystem writes outside the temporary directory the framework provides and
+removes. A test that leaves state behind passes alone and fails in a suite.
+
+One test file per module under test. When one module's tests outgrow a single
+file, that usually means the module is doing too much.
+
 ## Test design
 
 A test names the behaviour it protects, not the method it calls. If a test

@@ -6,13 +6,16 @@ description: Use when asked to review the current uncommitted diff against the p
 Review the current uncommitted diff against the playbook quality bar. Read
 the [code-quality](../code-quality/SKILL.md),
 [refactoring-discipline](../refactoring-discipline/SKILL.md),
-[code-comments](../code-comments/SKILL.md), and
-[testing-standards](../testing-standards/SKILL.md) skills first, then apply them.
+[code-comments](../code-comments/SKILL.md),
+[testing-standards](../testing-standards/SKILL.md),
+[generated-artifacts](../generated-artifacts/SKILL.md), and
+[verified-documentation](../verified-documentation/SKILL.md) skills first,
+then apply them.
 
 Run `git diff` and `git diff --staged` to see the changes. If both are empty,
 say so and stop.
 
-Report findings under these four headings, and only report a heading if it
+Report findings under these five headings, and only report a heading if it
 has findings:
 
 1. **Quality** — error handling that is missing or speculative, SOLID
@@ -24,8 +27,10 @@ has findings:
    public Dart API left undocumented.
 4. **Tests** — a mocked service class where only the low-level client should
    be mocked; tests written before the implementation review.
+5. **Generated and documented** — a hand edit to a generated artifact; a
+   document that names a symbol this change renamed or removed.
 
 For each finding give the file, the line, and one sentence on why it matters.
 Do not fix anything. Report, then stop.
 
-If the diff is clean against all four, say so in one sentence.
+If the diff is clean against all five, say so in one sentence.
