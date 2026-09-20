@@ -1,6 +1,6 @@
 {
   "name": "playbook-eng",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Software engineering practices: design gates, code quality, security, testing, Dart, Flutter, Swift, and SwiftUI",
   "author": {
     "name": "Hannan"

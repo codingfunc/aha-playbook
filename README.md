@@ -75,8 +75,8 @@ harnesses. See the [import guide](https://learn.chatgpt.com/docs/import).
 
 | Plugin | Contents |
 | --- | --- |
-| `playbook-core` | Domain-neutral working agreement, injected into every session, plus the `reader` agent: a Haiku subagent for bulk file reads and greps |
-| `playbook-eng` | Engineering gates and 15 skills: six engineering practices, three Dart and Flutter skills, five Swift skills, and quality-check |
+| `playbook-core` | Domain-neutral working agreement, handoff skill, and the `reader` agent: a Haiku subagent for bulk file reads and greps |
+| `playbook-eng` | Engineering gates and 18 skills: six engineering practices, three Dart and Flutter skills, five Swift skills, quality-check, branch review, domain modeling, and bug diagnosis |
 | `playbook-design` | Accessibility design and review, with SwiftUI implementation guidance |
 | `playbook-projects` | Non-software project practices (empty) |
 
@@ -144,6 +144,24 @@ its supporting references only when relevant to the task.
 
 Both run `plugins/playbook-eng/skills/quality-check/SKILL.md`. It reviews
 staged and unstaged changes and reports findings without editing files.
+
+## Workflow skills
+
+| Skill | Use it for |
+| --- | --- |
+| [handoff](plugins/playbook-core/skills/handoff/SKILL.md) | Transfer decisions, progress, verification, and the next action to another session |
+| [code-review](plugins/playbook-eng/skills/code-review/SKILL.md) | Review committed branch or PR changes against project standards and the originating requirements |
+| [domain-modeling](plugins/playbook-eng/skills/domain-modeling/SKILL.md) | Resolve domain terminology and prepare glossary entries or consequential ADRs |
+| [diagnosing-bugs](plugins/playbook-eng/skills/diagnosing-bugs/SKILL.md) | Reproduce a reported symptom, distinguish causal hypotheses, and verify a fix |
+
+`quality-check` remains the review for staged and unstaged changes;
+`code-review` compares committed changes against a specified base. Neither
+review edits files. The workflow skills preserve the existing document,
+design, implementation-review, testing, and commit gates.
+
+These skills are adapted from Matt Pocock's skills. Attribution and license
+notices ship inside the [core](plugins/playbook-core/THIRD_PARTY_NOTICES.md)
+and [engineering](plugins/playbook-eng/THIRD_PARTY_NOTICES.md) plugins.
 
 ## Adding a practice
 
