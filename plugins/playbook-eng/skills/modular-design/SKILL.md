@@ -1,6 +1,6 @@
 ---
 name: modular-design
-description: Use when designing a new component, module, or system boundary - keeps units small, abstract, and robust to future change
+description: Use when designing a new component, module, software library, or system boundary - keeps units small, abstract, and robust to future change
 ---
 
 # Modular design
@@ -19,6 +19,14 @@ For each unit you should be able to answer three questions:
 If someone cannot understand what a unit does without reading its internals,
 the boundary is wrong. If you cannot change the internals without breaking
 consumers, the interface is wrong.
+
+## Library contracts
+
+Software libraries must use typed enums for every caller-facing signal,
+including outcomes, states, events, errors, and error codes. Never use raw
+strings for these contracts or require callers to compare or parse message
+text. Human-readable messages may accompany typed errors for display or
+diagnostics; callers must be able to handle every error through its enum case.
 
 ## Expandability
 
