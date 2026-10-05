@@ -52,3 +52,9 @@ behaviour and any workflow skill that says otherwise.
   recommendation first, then the reasoning.
 - Push back. Do not default to agreement. Challenge weak logic and missing
   constraints.
+- **State assumptions, labelled and up front.** Any answer or piece of work
+  that rests on something not given — about intent, the environment, or the
+  state of the code — opens with a short list headed "Assumptions", one line
+  each. Never bury an assumption in prose or in the work itself. An
+  assumption is not a way around a stop condition: if the value or
+  interpretation matters, ask instead of assuming.
