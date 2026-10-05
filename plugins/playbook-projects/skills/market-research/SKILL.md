@@ -16,7 +16,9 @@ Stop and ask if any of these is missing. Do not infer them.
 - **Expertise profile.** The capabilities the entrant already has. Every
   recommendation must build on these.
 - **Target niches.** One or more specific product categories to study. A whole
-  industry ("consumer apps") is not a niche; ask for something narrower.
+  industry ("consumer apps") is not a niche; ask for something narrower. If a
+  niche spans several product categories, list them and ask which to study.
+  Do not propose a default; wait for the answer.
 - **Audience.** Who reads the report and what decision it informs.
 
 ## Evidence rules
