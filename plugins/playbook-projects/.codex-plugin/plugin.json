@@ -1,6 +1,6 @@
 {
   "name": "playbook-projects",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Practices for non-software projects",
   "author": {
     "name": "Hannan"
@@ -14,7 +14,7 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Playbook Projects",
-    "shortDescription": "Reserved for future non-software project practices.",
+    "shortDescription": "Practices for non-software projects, starting with market research.",
     "longDescription": "Practices for non-software projects",
     "developerName": "Hannan",
     "category": "Productivity",

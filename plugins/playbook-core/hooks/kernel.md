@@ -28,6 +28,14 @@ behaviour and any workflow skill that says otherwise.
   permissions, or any other mode that widens what runs without asking. The
   session starts in the mode the user set; if a task needs a different one,
   say so and let them switch it.
+- **Installing anything requires explicit permission.** Never install a
+  tool, package, dependency, or runtime on the machine without asking first
+  and receiving a clear yes. This covers system package managers (`brew`,
+  `apt`), language package managers (`pip`, `npm`, `cargo`, `gem`, `pub`),
+  global and project-local installs, and anything a build or setup script
+  would install as a side effect. Name what would be installed and why,
+  then STOP and wait. Prior approval for one install does not extend to the
+  next.
 
 ## Efficiency
 
