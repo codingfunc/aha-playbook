@@ -45,6 +45,20 @@ agreement applies as well.
   wherever it can run. When a mock is used, name it and say why in the
   report.
 
+## Agent tiers
+
+- **Design is always done in the session.** The architecture outline, its
+  assumptions, and the approval conversation never go to a subagent.
+- **Production code runs in the session by default.** On request, the user
+  may have the implementation delegated to an `opus` subagent; the session
+  agent still reviews it before anything else happens.
+- **Tests go to the `test-writer` subagent.** Once the production review
+  is approved, dispatch `test-writer` with the reviewed files, the happy
+  paths to cover, and the testing skills to read. It runs the suite and
+  the coverage tool and returns the measured figure. Review its tests from
+  its report and the diff rather than re-reading every file, and relay the
+  figure without re-running.
+
 ## Token economy
 
 - **Read large files in chunks.** For files over roughly 200 lines, do not
