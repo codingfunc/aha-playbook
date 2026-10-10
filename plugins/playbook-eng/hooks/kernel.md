@@ -56,9 +56,21 @@ agreement applies as well.
 - **Generated artifacts are write-only.** Mock HTML, lockfiles, build
   output: never read one back to verify it, unless it has failed.
 
+## Build tools
+
+- **Build tools may run without asking.** Agents may run the project's
+  build tools to compile or build, run, and test the project. This covers
+  compilers, linters, formatters, test runners, and code generators already
+  present in the project. It does not relax the install rule: anything a
+  build would install as a side effect still needs explicit permission
+  first.
+
 ## Git
 
 - **Never `git commit` or `git push` without explicit approval.** No
   exceptions — every repo, every branch, every worktree. This applies to
-  subagents. `git add` is permitted with approval.
+  subagents.
+- **`git add` is always permitted.** Stage every newly created file before
+  asking for review. An untracked file is invisible to the diff, so an
+  unstaged file is an unreviewed file.
 - **No Claude attribution** in commit messages.
