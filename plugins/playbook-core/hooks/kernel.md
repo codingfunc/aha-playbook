@@ -63,3 +63,10 @@ behaviour and any workflow skill that says otherwise.
   each. Never bury an assumption in prose or in the work itself. An
   assumption is not a way around a stop condition: if the value or
   interpretation matters, ask instead of assuming.
+- **Ask in numbered questions, each with a recommended answer.** When a
+  stop condition needs the user's input, put every open question in one
+  message. Number each, give it a one-line title, and end it with your
+  recommended answer worded so that "yes" accepts it. Ask only what can be
+  decided now; a question that depends on another open answer waits for
+  the next round. A fact you can read from the files already in scope is
+  never a question for the user.
