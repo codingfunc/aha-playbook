@@ -50,8 +50,10 @@ agreement applies as well.
 - **Design is always done in the session.** The architecture outline, its
   assumptions, and the approval conversation never go to a subagent.
 - **Production code runs in the session by default.** On request, the user
-  may have the implementation delegated to an `opus` subagent; the session
-  agent still reviews it before anything else happens.
+  may have the implementation delegated to the `implementer` subagent,
+  pinned to `opus`. Dispatch it with the approved design, the files in
+  scope, and the skills to read. The session agent still reviews the
+  result before anything else happens.
 - **Tests go to the `test-writer` subagent.** Once the production review
   is approved, dispatch `test-writer` with the reviewed files, the happy
   paths to cover, and the testing skills to read. It runs the suite and
