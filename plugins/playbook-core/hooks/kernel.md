@@ -36,6 +36,11 @@ behaviour and any workflow skill that says otherwise.
   would install as a side effect. Name what would be installed and why,
   then STOP and wait. Prior approval for one install does not extend to the
   next.
+- **At most three subagents at once, and none nested.** Default to doing
+  the work in the session. Dispatch a subagent only for work that is
+  self-contained, returns a summary, and would otherwise flood the
+  context. Never more than three running at the same time; ask before
+  starting a fourth. A subagent does not spawn subagents of its own.
 
 ## Efficiency
 
