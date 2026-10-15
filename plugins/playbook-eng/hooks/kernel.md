@@ -28,6 +28,13 @@ agreement applies as well.
 - **Test performance end to end before release.** Hot-path instrumentation
   is the starting point, not the finish. Before a release, measure the
   full flow a user experiences, not just the parts the design flagged.
+- **Mobile apps ship fully instrumented.** On iOS and Android,
+  instrumentation is tier-one production work. Every release build
+  measures launch time, frame hitches, CPU, memory, energy, network, and
+  disk for each user flow, and every hot path carries a trace span. A
+  design without its instrumentation plan, or production code without the
+  instrumentation it planned, is incomplete. The ios-instrumentation and
+  android-instrumentation skills name the tooling.
 
 ## Order of work
 

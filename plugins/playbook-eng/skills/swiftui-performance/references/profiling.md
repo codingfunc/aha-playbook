@@ -16,9 +16,11 @@ Choose instruments based on the symptom and installed Xcode support:
 
 Capture the same interaction with comparable data and cache state before
 and after a change. Include the full user flow, not just an isolated helper.
-Use signposts or the project's existing instrumentation to correlate stages
-when the trace alone cannot identify them. Avoid logging sensitive payloads
-or adding high-volume instrumentation that distorts the measurement.
+Use the signposts the app ships under
+[ios-instrumentation](../../ios-instrumentation/SKILL.md) to correlate
+stages when the trace alone cannot identify them; a hot path without one
+is a finding in itself. Avoid logging sensitive payloads or adding
+high-volume instrumentation that distorts the measurement.
 
 Record observed duration, hitch behavior, CPU, or memory as relevant to the
 symptom. Report run-to-run variation rather than selecting the best sample.
