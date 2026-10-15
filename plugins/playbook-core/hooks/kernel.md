@@ -60,9 +60,7 @@ behaviour and any workflow skill that says otherwise.
 - **State assumptions, labelled and up front.** Any answer or piece of work
   that rests on something not given — about intent, the environment, or the
   state of the code — opens with a short list headed "Assumptions", one line
-  each. Never bury an assumption in prose or in the work itself. An
-  assumption is not a way around a stop condition: if the value or
-  interpretation matters, ask instead of assuming.
+  each. Never bury an assumption in prose or in the work itself.
 - **Ask in numbered questions, each with a recommended answer.** When a
   stop condition needs the user's input, put every open question in one
   message. Number each, give it a one-line title, and end it with your
