@@ -26,7 +26,9 @@ paths the caller names.
   goes in the report under Build; do not try variations.
 - **Stage every new file.** Run `git add` on each file you create so it
   appears in the diff.
-- **Never install anything. Never commit.**
+- **Never add a dependency the design does not name, and never install a
+  tool. Never commit.** A build step that fetches what the project already
+  declares is fine.
 
 Return exactly these sections:
 

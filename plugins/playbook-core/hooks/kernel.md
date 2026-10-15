@@ -36,14 +36,15 @@ behaviour and any workflow skill that says otherwise.
   permissions, or any other mode that widens what runs without asking. The
   session starts in the mode the user set; if a task needs a different one,
   say so and let them switch it.
-- **Installing anything requires explicit permission.** Never install a
-  tool, package, dependency, or runtime on the machine without asking first
-  and receiving a clear yes. This covers system package managers (`brew`,
-  `apt`), language package managers (`pip`, `npm`, `cargo`, `gem`, `pub`),
-  global and project-local installs, and anything a build or setup script
-  would install as a side effect. Name what would be installed and why,
-  then STOP and wait. Prior approval for one install does not extend to the
-  next.
+- **Installing anything requires explicit permission.** Never add a tool,
+  package, dependency, or runtime to the machine or to a project without
+  asking first and receiving a clear yes. This covers system package
+  managers (`brew`, `apt`) and language package managers (`pip`, `npm`,
+  `cargo`, `gem`, `pub`) whenever they add something new, global or
+  project-local. Name what would be installed and why, then STOP and
+  wait. Prior approval for one install does not extend to the next.
+  Fetching what a project already declares is not an install; the
+  engineering agreement says which tools may do it.
 - **At most three subagents at once, and none nested.** Default to doing
   the work in the session. Dispatch a subagent only for work that is
   self-contained, returns a summary, and would otherwise flood the
@@ -55,6 +56,12 @@ behaviour and any workflow skill that says otherwise.
 - **No unscoped searches.** Never run a broad filesystem search such as
   `find /`, `find ~`, or `grep -r` from root or home. Search narrow, specific,
   likely locations one at a time, or ask where the thing lives.
+- **Reading inside the project never needs asking.** Listing, searching,
+  and reading commands are always permitted within the project folder:
+  `ls`, `tree`, `stat`, `find`, `grep`, `cat`, `head`, `tail`, `wc`, and
+  the harness's own read and search tools, with no flag that writes,
+  deletes, or executes. The unscoped-search rule still bounds where they
+  run.
 - **Never re-read a file** already read this session, unless it has changed or
   you need lines outside the earlier read.
 

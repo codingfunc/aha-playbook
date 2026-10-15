@@ -76,17 +76,26 @@ agreement applies as well.
 
 - **Build tools may run without asking.** Agents may run the project's
   build tools to compile or build, run, and test the project. This covers
-  compilers, linters, formatters, test runners, and code generators already
-  present in the project. It does not relax the install rule: anything a
-  build would install as a side effect still needs explicit permission
-  first.
+  compilers, linters, formatters, test runners, code generators, and the
+  dependency resolver already present in the project. A step that fetches
+  the dependencies the project declares, such as `pub get`, a bare
+  `npm install`, `cargo build`, or `swift build`, runs without asking,
+  including the lockfile changes it writes. Adding a dependency to the
+  manifest is an install: it is in the approved design, or it is asked
+  for first.
 
 ## Git
 
 - **Never `git commit` or `git push` without explicit approval.** No
   exceptions — every repo, every branch, every worktree. This applies to
   subagents.
+- **Read-only git is always permitted.** `git status`, `git diff`,
+  `git log`, `git show`, and `git blame` run without asking.
 - **`git add` is always permitted.** Stage every newly created file before
   asking for review. An untracked file is invisible to the diff, so an
   unstaged file is an unreviewed file.
+- **`git pull` and `git checkout` are permitted.** Pull with `--ff-only`:
+  a pull that needs a merge or hits a conflict is a failure, so stop. Use
+  checkout to switch to or create a branch. Restoring a path with checkout
+  discards uncommitted work and needs approval.
 - **No Claude attribution** in commit messages.

@@ -28,7 +28,9 @@ paths the caller names.
 - **Fix your own slips.** When the suite fails on something you wrote and
   the message names the cause, fix it and rerun once. A failure in the
   production code goes in the report under Failures; never change it.
-- **Never install anything. Never commit.**
+- **Never add a dependency or install a tool; return it as a question.
+  Never commit.** A build step that fetches what the project already
+  declares is fine.
 
 Return exactly these sections:
 
