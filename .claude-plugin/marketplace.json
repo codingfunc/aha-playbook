@@ -19,7 +19,7 @@
     {
       "name": "playbook-design",
       "source": "./plugins/playbook-design",
-      "description": "UI and UX design practices: accessibility and SwiftUI implementation guidance"
+      "description": "UI and UX design practices: UX design briefs for consumer mobile apps, accessibility, and SwiftUI implementation guidance"
     },
     {
       "name": "playbook-projects",

@@ -34,7 +34,8 @@ always-on instruction file.
 The installers register the plugins for use across projects. This `AGENTS.md`
 describes maintaining the playbook; it does not install it into other repos.
 
-Keep names and release versions aligned between the two plugin manifests.
+The repo has one release version; `scripts/bump-version.sh` sets it in every
+plugin manifest. Keep names aligned between the two plugin manifests.
 Preserve `name` and `description` as the only skill frontmatter fields.
 
 ## Adding harness support

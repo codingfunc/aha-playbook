@@ -189,9 +189,10 @@ Codex uses installed copies in its plugin cache; changing a source file
 alone does not update an installed copy. Start a new conversation after
 reinstalling. Use `/hooks` to review any changed hook definitions.
 
-Both manifests carry a semver `version`. Keep the version aligned between
-Claude and Codex and bump it per release. A shared content change belongs
-in a single release for both harnesses.
+The playbook has one release version. Every plugin's Claude and Codex
+manifest carries the same semver `version`, and a release bumps all of them
+together with `scripts/bump-version.sh <version>`, whether or not each
+plugin changed.
 
 ## Design and plan
 
