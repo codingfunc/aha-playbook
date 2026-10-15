@@ -6,8 +6,9 @@ description: Use when the user asks for the cause of a reported failure, crash, 
 # Diagnosing bugs
 
 Applies when the user has asked you to find the cause of a failure. A test
-or build that fails while you are working is not this skill: stop and
-report it, as the working agreement says, and wait to be asked.
+or build that fails while you are working is not this skill: the working
+agreement decides whether it is a slip you fix or a failure you report.
+This skill starts only when the user asks for the cause.
 
 Redact every secret before showing a command, an output, or a captured
 artifact. Build loops against environment variables so credentials never
@@ -32,8 +33,8 @@ For a slowdown the loop is a measurement, not an assertion: record a
 baseline, then bisect between the known-good and known-bad states.
 
 **Gate.** Do not read code for causes until the command exists and you
-have run it once and shown its redacted output. If the first loop you
-build does not go red, that is a failure under the working agreement:
+have run it once and shown its redacted output. If the first loop runs
+but does not go red, that is a failure under the working agreement:
 present what it did and ask. If no loop can be built, stop, list what
 you tried, and ask for one of: access to an environment that reproduces
 it, a redacted captured artifact, or permission to add temporary

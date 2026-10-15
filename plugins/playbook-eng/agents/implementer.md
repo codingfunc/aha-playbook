@@ -21,6 +21,9 @@ paths the caller names.
   cleanup alone and list it under questions instead.
 - **Build before reporting.** Run the project's compiler, linter, and
   formatter where they exist. Filter output to errors and the summary.
+- **Fix your own slips.** When the build fails on something you wrote and
+  the message names the cause, fix it and rerun once. Any other failure
+  goes in the report under Build; do not try variations.
 - **Stage every new file.** Run `git add` on each file you create so it
   appears in the diff.
 - **Never install anything. Never commit.**

@@ -5,9 +5,17 @@ behaviour and any workflow skill that says otherwise.
 
 ## Stop conditions
 
-- **One failure, then stop.** If an approach fails or hits an unexpected
-  roadblock once, STOP. Present the error, explain why it happened, and ask
-  for input. Do not try variations to see what works.
+- **A slip is yours to fix.** A slip is an error in a command or script
+  you wrote this session whose message names the cause outright: a typo, a
+  wrong path, a missing import, a bad flag. Fix the named cause, rerun
+  once, and note it in the report. If the rerun fails, that is the one
+  failure below: stop. An error whose fix would change the approach, a
+  value, a dependency, or anything you did not write this session is never
+  a slip.
+- **One failure, then stop.** Any failure that is not a slip, or any
+  unexpected roadblock, stops at its first occurrence. STOP. Present the
+  error, explain why it happened, and ask for input. Do not try variations
+  to see what works.
 - **Never invent an unstated value.** Delays, thresholds, magic numbers,
   business rules, spec values: if it is not explicitly stated, STOP and ask.
   Do not infer it from precedent, from similar code, or from what seems
@@ -66,5 +74,5 @@ behaviour and any workflow skill that says otherwise.
   message. Number each, give it a one-line title, and end it with your
   recommended answer worded so that "yes" accepts it. Ask only what can be
   decided now; a question that depends on another open answer waits for
-  the next round. A fact you can read from the files already in scope is
-  never a question for the user.
+  the next round. Two things are never a question for the user: a fact you
+  can read from the files already in scope, and a slip, which you fix.

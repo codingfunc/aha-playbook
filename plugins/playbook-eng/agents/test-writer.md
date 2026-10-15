@@ -25,6 +25,9 @@ paths the caller names.
 - **One test file per module under test.**
 - **Measure, do not claim.** Run the suite and the coverage tool. Filter
   the output to failures and the summary line.
+- **Fix your own slips.** When the suite fails on something you wrote and
+  the message names the cause, fix it and rerun once. A failure in the
+  production code goes in the report under Failures; never change it.
 - **Never install anything. Never commit.**
 
 Return exactly these sections:
