@@ -75,7 +75,7 @@ harnesses. See the [import guide](https://learn.chatgpt.com/docs/import).
 
 | Plugin | Contents |
 | --- | --- |
-| `playbook-core` | Domain-neutral working agreement, injected into every session, plus the `reader` agent: a Haiku subagent for bulk file reads and greps |
+| `playbook-core` | Domain-neutral working agreement, injected into every session, the `handoff` skill for keeping a project's loaded snapshot small, and the `reader` agent: a Haiku subagent for bulk file reads and greps |
 | `playbook-eng` | Engineering gates and 15 skills: six engineering practices, three Dart and Flutter skills, five Swift skills, and quality-check |
 | `playbook-design` | Accessibility design and review, with SwiftUI implementation guidance |
 | `playbook-projects` | Non-software project practices (empty) |
