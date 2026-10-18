@@ -76,9 +76,9 @@ harnesses. See the [import guide](https://learn.chatgpt.com/docs/import).
 | Plugin | Contents |
 | --- | --- |
 | `playbook-core` | Domain-neutral working agreement, injected into every session, the `handoff` skill for keeping a project's loaded snapshot small, and the `reader` agent: a Haiku subagent for bulk file reads and greps |
-| `playbook-eng` | Engineering gates and 15 skills: six engineering practices, three Dart and Flutter skills, five Swift skills, and quality-check |
-| `playbook-design` | Accessibility design and review, with SwiftUI implementation guidance |
-| `playbook-projects` | Non-software project practices (empty) |
+| `playbook-eng` | Engineering gates and 20 skills: nine engineering practices, three Dart and Flutter skills, five Swift skills, two mobile instrumentation skills, and quality-check |
+| `playbook-design` | Accessibility design and review, with SwiftUI implementation guidance, and the `ux-design` skill for consumer mobile design briefs |
+| `playbook-projects` | Non-software project practices: the `market-research` skill |
 
 ## How it is structured
 
@@ -100,8 +100,7 @@ scripts/install-codex.sh              Codex installer for this checkout
 ```
 
 Each marketplace points to the same `plugins/` directories. Each skill is
-maintained once. The projects plugin remains empty until its practices are
-decided.
+maintained once.
 
 Rules that must always fire live in a `SessionStart` hook kernel — one per
 plugin, written as prose in `hooks/kernel.md`. Reference material lives in
