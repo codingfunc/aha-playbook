@@ -1,7 +1,9 @@
 # Working agreement — core
 
 These rules apply to every task, in every domain. They override default
-behaviour and any workflow skill that says otherwise.
+behaviour and any workflow skill that says otherwise. A project's own
+instruction file, CLAUDE.md or AGENTS.md, overrides this agreement and the
+engineering agreement wherever they conflict.
 
 ## Stop conditions
 
@@ -18,8 +20,9 @@ behaviour and any workflow skill that says otherwise.
   to see what works.
 - **Never invent an unstated value.** Delays, thresholds, magic numbers,
   business rules, spec values: if it is not explicitly stated, STOP and ask.
-  Do not infer it from precedent, from similar code, or from what seems
-  reasonable.
+  Do not infer it from precedent or from what seems reasonable. Reusing a
+  value the design or the task points you to, such as an existing constant
+  or token, is reading a fact, not inventing one.
 - **Ambiguity is a stop condition.** If something is unclear, name what is
   confusing and ask. If multiple interpretations exist, present them — never
   pick one silently.
@@ -62,8 +65,9 @@ behaviour and any workflow skill that says otherwise.
   the harness's own read and search tools, with no flag that writes,
   deletes, or executes. The unscoped-search rule still bounds where they
   run.
-- **Never re-read a file** already read this session, unless it has changed or
-  you need lines outside the earlier read.
+- **Never re-read a file** already read this session, unless it has changed,
+  you need lines outside the earlier read, or a compaction has dropped its
+  contents from context.
 
 ## Communication
 

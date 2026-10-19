@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Use when ending a session, writing or updating a handoff, or revising a design spec on a long-running project - keeps the loaded snapshot small and moves history to a searchable folder
+description: Use when ending a session, writing or updating a handoff, revising a design spec, or adopting the layout in a project whose instruction file has become a log - keeps the loaded snapshot small and moves history to a searchable folder
 ---
 
 # Handoff
@@ -51,6 +51,28 @@ the change goes in that day's history entry. Superseded text is in git.
 
 When a decision in the snapshot is settled, write it into the spec and drop
 it from the snapshot.
+
+## Adopting the layout
+
+A project arriving with its own record, an instruction file that has grown
+into a dated log or a context file of checkpoints, is converted once, in one
+handoff:
+
+- Archive the instruction files verbatim in one dated design note or history
+  entry. Git holds them too, but the reading rule searches folders, not git.
+- The instruction file keeps rules only, compressed, with a Record rule that
+  names this skill. Decisions the spec already states are referenced, not
+  repeated. A statement that is no longer true is dropped and listed in the
+  adoption entry.
+- The harness's instruction file loads the snapshot; in Claude Code that is
+  an `@docs/handoff/CURRENT.md` line in CLAUDE.md.
+- The existing log is frozen where it is with a note under its title; it is
+  neither split nor deleted. The snapshot's History section names it as the
+  record before the adoption date.
+- The first history entry records the adoption: what was replaced, where the
+  archive is, what was dropped, and the alternatives rejected.
+- A project rule that names another file as memory overrides the playbook
+  and keeps the log growing. Remove it in the same handoff.
 
 ## Memory
 
