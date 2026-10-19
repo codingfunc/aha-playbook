@@ -1,0 +1,11 @@
+{
+  "name": "playbook-swift",
+  "version": "0.17.0",
+  "description": "Swift and SwiftUI practices: language conventions, concurrency, testing, SwiftUI architecture and performance, and iOS instrumentation",
+  "author": {
+    "name": "Hannan"
+  },
+  "homepage": "https://github.com/codingfunc/aha-playbook",
+  "repository": "https://github.com/codingfunc/aha-playbook",
+  "keywords": ["practices", "swift", "swiftui", "ios"]
+}

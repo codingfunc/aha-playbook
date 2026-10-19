@@ -10,7 +10,8 @@ set -euo pipefail
 
 MARKETPLACE="aha-playbook"
 SOURCE="$(cd "$(dirname "$0")/.." && pwd)"
-PLUGINS=(playbook-core playbook-eng playbook-design playbook-projects)
+PLUGINS=(playbook-core playbook-eng playbook-design playbook-projects
+         playbook-swift playbook-flutter playbook-android)
 AGENT_SRC="${SOURCE}/scripts/codex-agents"
 AGENT_DST="${CODEX_HOME:-${HOME}/.codex}/agents"
 AGENTS=(explorer reader)
@@ -64,7 +65,7 @@ fi
 if [ "$DRY_RUN" -eq 1 ]; then
   echo "Dry run complete; no Codex configuration changed."
 else
-  echo "Installed all four plugins for this Codex user."
+  echo "Installed all seven plugins for this Codex user."
   echo "In Codex CLI, open /hooks and review and trust the two playbook hooks."
   echo "Start a new conversation after trusting the hooks to load the rules."
 fi

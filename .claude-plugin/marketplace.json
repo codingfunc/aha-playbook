@@ -14,7 +14,22 @@
     {
       "name": "playbook-eng",
       "source": "./plugins/playbook-eng",
-      "description": "Software engineering practices: design gates, code quality, security, testing, Dart, Flutter, Swift, and SwiftUI"
+      "description": "Software engineering practices: design gates, code quality, security, testing, documentation, and generated artifacts"
+    },
+    {
+      "name": "playbook-swift",
+      "source": "./plugins/playbook-swift",
+      "description": "Swift and SwiftUI practices: language conventions, concurrency, testing, SwiftUI architecture and performance, and iOS instrumentation. Enable per Swift project"
+    },
+    {
+      "name": "playbook-flutter",
+      "source": "./plugins/playbook-flutter",
+      "description": "Dart and Flutter practices: conventions, layered architecture, and theming. Enable per Flutter project"
+    },
+    {
+      "name": "playbook-android",
+      "source": "./plugins/playbook-android",
+      "description": "Native Android practices: the instrumentation every release ships with. Enable per Android project"
     },
     {
       "name": "playbook-design",

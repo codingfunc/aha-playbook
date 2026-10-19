@@ -1,0 +1,23 @@
+{
+  "name": "playbook-android",
+  "version": "0.17.0",
+  "description": "Native Android practices: the instrumentation every release ships with",
+  "author": {
+    "name": "Hannan"
+  },
+  "homepage": "https://github.com/codingfunc/aha-playbook",
+  "repository": "https://github.com/codingfunc/aha-playbook",
+  "keywords": ["practices", "android", "instrumentation"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Playbook Android",
+    "shortDescription": "Native Android instrumentation practices.",
+    "longDescription": "Native Android practices: the instrumentation every release ships with",
+    "developerName": "Hannan",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Show the Android practices available in this plugin."
+    ]
+  }
+}

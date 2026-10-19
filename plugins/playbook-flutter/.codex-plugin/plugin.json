@@ -1,0 +1,23 @@
+{
+  "name": "playbook-flutter",
+  "version": "0.17.0",
+  "description": "Dart and Flutter practices: conventions, layered architecture, and theming",
+  "author": {
+    "name": "Hannan"
+  },
+  "homepage": "https://github.com/codingfunc/aha-playbook",
+  "repository": "https://github.com/codingfunc/aha-playbook",
+  "keywords": ["practices", "dart", "flutter"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Playbook Flutter",
+    "shortDescription": "Dart and Flutter conventions, architecture, and theming.",
+    "longDescription": "Dart and Flutter practices: conventions, layered architecture, and theming",
+    "developerName": "Hannan",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Show the Flutter practices available in this plugin."
+    ]
+  }
+}

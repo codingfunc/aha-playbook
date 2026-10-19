@@ -31,7 +31,23 @@ claude plugin marketplace add codingfunc/aha-playbook
 claude plugin install playbook-core@aha-playbook
 claude plugin install playbook-eng@aha-playbook
 claude plugin install playbook-design@aha-playbook
+claude plugin install playbook-projects@aha-playbook
 ```
+
+The language plugins are installed the same way but enabled per project, so
+a Swift session does not load Flutter guidance and the other way round. The
+installer installs them and disables them at user scope; then, in each
+project that uses the language:
+
+```bash
+claude plugin enable playbook-swift@aha-playbook --scope project
+claude plugin enable playbook-flutter@aha-playbook --scope project
+claude plugin enable playbook-android@aha-playbook --scope project
+```
+
+`--scope project` writes the project's `.claude/settings.json`, which wins
+over the user-level disable for that plugin. Use `--scope local` in a
+checkout you do not own.
 
 Restart Claude Code afterwards.
 
@@ -51,9 +67,10 @@ effort. The `explorer` file overrides the built-in agent of that name. The
 installer skips a file that already exists with different content.
 
 The installer registers this checkout as the `aha-playbook` marketplace,
-then installs and enables all four plugins for the current Codex user. They
-are available when working in other projects as well. Run the installer
-again to refresh installed copies from this checkout.
+then installs and enables all seven plugins for the current Codex user,
+including the three language plugins; per-project scoping has not been
+verified in Codex. They are available when working in other projects as
+well. Run the installer again to refresh installed copies from this checkout.
 
 After installing, open `/hooks` in Codex CLI. Review and trust the
 `playbook-core` and `playbook-eng` SessionStart hooks, then start a new
@@ -76,7 +93,10 @@ harnesses. See the [import guide](https://learn.chatgpt.com/docs/import).
 | Plugin | Contents |
 | --- | --- |
 | `playbook-core` | Domain-neutral working agreement, injected into every session, the `handoff` skill for keeping a project's loaded snapshot small, and the `reader` agent: a Haiku subagent for bulk file reads and greps |
-| `playbook-eng` | Engineering gates and 20 skills: nine engineering practices, three Dart and Flutter skills, five Swift skills, two mobile instrumentation skills, and quality-check |
+| `playbook-eng` | Engineering gates and 10 skills: nine engineering practices and quality-check |
+| `playbook-swift` | Six Swift skills: conventions, concurrency, testing, SwiftUI architecture and performance, and iOS instrumentation. Enabled per Swift project |
+| `playbook-flutter` | Three Dart and Flutter skills: conventions, architecture, and theming. Enabled per Flutter project |
+| `playbook-android` | Android instrumentation. Enabled per native Android project |
 | `playbook-design` | Accessibility design and review, with SwiftUI implementation guidance, and the `ux-design` skill for consumer mobile design briefs |
 | `playbook-projects` | Non-software project practices: the `market-research` skill |
 
@@ -127,9 +147,9 @@ The Swift and accessibility skills are shared by Claude Code and Codex:
 
 | Skill | Claude Code | Codex |
 | --- | --- | --- |
-| Concurrency correctness | `/playbook-eng:swift-concurrency` | `$playbook-eng:swift-concurrency` |
-| Swift testing | `/playbook-eng:swift-testing` | `$playbook-eng:swift-testing` |
-| SwiftUI performance | `/playbook-eng:swiftui-performance` | `$playbook-eng:swiftui-performance` |
+| Concurrency correctness | `/playbook-swift:swift-concurrency` | `$playbook-swift:swift-concurrency` |
+| Swift testing | `/playbook-swift:swift-testing` | `$playbook-swift:swift-testing` |
+| SwiftUI performance | `/playbook-swift:swiftui-performance` | `$playbook-swift:swiftui-performance` |
 | Accessibility | `/playbook-design:accessibility` | `$playbook-design:accessibility` |
 
 They also apply when a request matches their descriptions. Each skill loads

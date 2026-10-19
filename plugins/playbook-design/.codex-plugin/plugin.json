@@ -1,6 +1,6 @@
 {
   "name": "playbook-design",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "UI and UX design practices: UX design briefs for consumer mobile apps, accessibility, and SwiftUI implementation guidance",
   "author": {
     "name": "Hannan"

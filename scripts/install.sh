@@ -10,6 +10,8 @@ set -euo pipefail
 MARKETPLACE="aha-playbook"
 SOURCE="codingfunc/aha-playbook"
 PLUGINS=(playbook-core playbook-eng playbook-design playbook-projects)
+# Installed for availability, disabled at user scope, enabled per project.
+LANGUAGE_PLUGINS=(playbook-swift playbook-flutter playbook-android)
 EXPLORE_SRC="$(cd "$(dirname "$0")" && pwd)/user-agents/explore.md"
 EXPLORE_DST="${CLAUDE_CONFIG_DIR:-${HOME}/.claude}/agents/explore.md"
 
@@ -43,9 +45,14 @@ else
   run claude plugin marketplace add "$SOURCE"
 fi
 
-for p in "${PLUGINS[@]}"; do
+for p in "${PLUGINS[@]}" "${LANGUAGE_PLUGINS[@]}"; do
   echo "Installing $p"
   run claude plugin install "${p}@${MARKETPLACE}"
+done
+
+for p in "${LANGUAGE_PLUGINS[@]}"; do
+  echo "Disabling $p at user scope; enable it per project"
+  run claude plugin disable "${p}@${MARKETPLACE}" --scope user
 done
 
 if [ "$EXPLORE" -eq 1 ]; then
@@ -61,6 +68,7 @@ fi
 
 echo
 echo "Done. Restart Claude Code to load the plugins."
-echo "All four plugins are enabled at user scope by default."
-echo "To scope a domain plugin to one project, disable it at user scope and"
-echo "enable it in that project's .claude/settings.json instead."
+echo "The four core plugins are enabled at user scope. The language plugins"
+echo "are installed but disabled there; enable each in the projects that use"
+echo "that language, for example:"
+echo "  claude plugin enable playbook-swift@${MARKETPLACE} --scope project"

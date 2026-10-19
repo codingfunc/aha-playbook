@@ -29,6 +29,42 @@
       "category": "Productivity"
     },
     {
+      "name": "playbook-swift",
+      "source": {
+        "source": "local",
+        "path": "./plugins/playbook-swift"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "playbook-flutter",
+      "source": {
+        "source": "local",
+        "path": "./plugins/playbook-flutter"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "playbook-android",
+      "source": {
+        "source": "local",
+        "path": "./plugins/playbook-android"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
       "name": "playbook-design",
       "source": {
         "source": "local",
