@@ -72,7 +72,14 @@ agreement applies as well.
 
 - **Read large files in chunks.** For files over roughly 200 lines, do not
   read the whole file speculatively. Locate the relevant section first — by
-  structure or search — then read with an offset and a limit.
+  structure or search — then read with an offset and a limit. This holds
+  however the file is read: `cat`, `sed -n`, and `head` through the shell
+  are reads too, so one command reads one file, and a shell read of a
+  long file takes a line range.
+- **A persisted tool output is a log, not a file to read.** When the
+  harness saves an oversized result to a `tool-results` file, the command
+  produced too much. Search or `head`/`tail` that file for the lines
+  needed; never read it whole.
 - **Never dump full command output into context.** For test runs, builds,
   and logs, filter to the failure and summary lines (`head`, `tail`, `grep`),
   then read only those.

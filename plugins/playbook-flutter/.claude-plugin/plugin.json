@@ -1,6 +1,6 @@
 {
   "name": "playbook-flutter",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "Dart and Flutter practices: conventions, layered architecture, and theming",
   "author": {
     "name": "Hannan"
