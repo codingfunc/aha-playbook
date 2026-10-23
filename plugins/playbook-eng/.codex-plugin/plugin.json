@@ -1,6 +1,6 @@
 {
   "name": "playbook-eng",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "Software engineering practices: design gates, code quality, security, testing, documentation, and generated artifacts",
   "author": {
     "name": "Hannan"

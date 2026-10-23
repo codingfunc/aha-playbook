@@ -97,6 +97,19 @@ agreement applies as well.
   including the lockfile changes it writes. Adding a dependency to the
   manifest is an install: it is in the approved design, or it is asked
   for first.
+- **Reuse the project's build directory.** Build into the location the
+  toolchain or the project already uses, so every build is incremental:
+  Xcode's default DerivedData, SwiftPM's `.build`, Flutter's `build/`. Never
+  pass a new output path, such as `-derivedDataPath`, `--build-path`,
+  `--scratch-path`, or a temporary or timestamped folder, and never copy
+  the project elsewhere to build it. If the project's scripts, Makefile,
+  or CI config name a build path, use exactly that path. Never clean
+  (`xcodebuild clean`, `flutter clean`, deleting DerivedData, `.build`, or
+  `build/`) unless a build error names stale output as the cause. Omit
+  `-resultBundlePath` unless the task asks for a result bundle.
+- **One build at a time per project.** A build that fails because another
+  build holds the directory or its database lock is a failure: stop and
+  report it. Never get around the lock with a second build directory.
 
 ## Git
 
