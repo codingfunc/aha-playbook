@@ -53,6 +53,15 @@ engineering agreement wherever they conflict.
   self-contained, returns a summary, and would otherwise flood the
   context. Never more than three running at the same time; ask before
   starting a fourth. A subagent does not spawn subagents of its own.
+- **Secret files are off limits.** Never read, search, print, copy, or
+  edit a file that holds a credential, in the project or outside it:
+  SSH and GPG keys; cloud, registry, and package-manager credentials
+  (`~/.aws`, `~/.config/gcloud`, `~/.kube`, `.npmrc`, `.netrc`,
+  `.git-credentials`); `.env` files; signing material (`*.pem`, `*.key`,
+  `*.p8`, `*.p12`, `*.jks`, `*.keystore`, `key.properties`); and the
+  keychain. A build tool that reads one itself is fine; opening it
+  yourself is not. If a task seems to need a secret's value, stop and
+  ask; never work around a denial.
 
 ## Efficiency
 
@@ -64,7 +73,7 @@ engineering agreement wherever they conflict.
   `ls`, `tree`, `stat`, `find`, `grep`, `cat`, `head`, `tail`, `wc`, and
   the harness's own read and search tools, with no flag that writes,
   deletes, or executes. The unscoped-search rule still bounds where they
-  run.
+  run. The secret-files rule still applies inside the project.
 - **Never re-read a file** already read this session, unless it has changed,
   you need lines outside the earlier read, or a compaction has dropped its
   contents from context.

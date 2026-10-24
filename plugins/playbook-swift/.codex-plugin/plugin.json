@@ -1,6 +1,6 @@
 {
   "name": "playbook-swift",
-  "version": "0.19.0",
+  "version": "0.20.0",
   "description": "Swift and SwiftUI practices: language conventions, concurrency, testing, SwiftUI architecture and performance, and iOS instrumentation",
   "author": {
     "name": "Hannan"
