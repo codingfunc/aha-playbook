@@ -103,9 +103,7 @@ agreement applies as well.
   pass a new output path, such as `-derivedDataPath`, `--build-path`,
   `--scratch-path`, or a temporary or timestamped folder, and never copy
   the project elsewhere to build it. If the project's scripts, Makefile,
-  or CI config name a build path, use exactly that path. Never clean
-  (`xcodebuild clean`, `flutter clean`, deleting DerivedData, `.build`, or
-  `build/`) unless a build error names stale output as the cause. Omit
+  or CI config name a build path, use exactly that path. Omit
   `-resultBundlePath` unless the task asks for a result bundle.
 - **One build at a time per project.** A build that fails because another
   build holds the directory or its database lock is a failure: stop and
