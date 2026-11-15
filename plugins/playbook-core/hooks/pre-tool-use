@@ -1,0 +1,135 @@
+#!/usr/bin/env bash
+# PreToolUse hook: enforces the two core kernel rules that can be checked
+# from a tool call alone. Secret files are denied; installs force a prompt.
+# A guardrail, not a boundary: shell matching is by token, not by parse.
+
+command -v jq >/dev/null 2>&1 || {
+    echo "playbook-core pre-tool-use: jq not found, rules not enforced" >&2
+    exit 0
+}
+
+# One jq process reads every field; @sh quoting makes the eval safe.
+fields=$(jq -r '
+    def s: if type == "string" then . else "" end;
+    @sh "tool=\(.tool_name | s) cmd=\(.tool_input.command | s) file_path=\(.tool_input.file_path | s) path=\(.tool_input.path | s) pattern=\(.tool_input.pattern | s) glob=\(.tool_input.glob | s)"
+' 2>/dev/null) || exit 0
+eval "$fields"
+
+decide() {
+    jq -n --arg decision "$1" --arg reason "$2" '{
+        hookSpecificOutput: {
+            hookEventName: "PreToolUse",
+            permissionDecision: $decision,
+            permissionDecisionReason: $reason
+        }
+    }'
+    exit 0
+}
+
+SECRET_REASON="Core kernel, secret files are off limits: this call names a credential file. Do not work around it; if the task needs the value, stop and ask."
+INSTALL_REASON="Core kernel, installing requires explicit permission: this command adds a package."
+
+is_secret_path() {
+    local p="$1" base
+    case "/$p/" in
+        */.ssh/*|*/.gnupg/*|*/.aws/*|*/.kube/*|*/.config/gcloud/*|*/Library/Keychains/*)
+            return 0 ;;
+    esac
+    base="${p##*/}"
+    case "$base" in
+        .env.example|.env.sample|.env.template) return 1 ;;
+        .env|.env.*|.env\*|.npmrc|.netrc|.git-credentials|key.properties) return 0 ;;
+        *.pem|*.key|*.p8|*.p12|*.jks|*.keystore|*.keychain|*.keychain-db) return 0 ;;
+    esac
+    return 1
+}
+
+# True when the words after an install verb name something to add.
+names_a_package() {
+    local word skip_next=0
+    set -f
+    for word in $1; do
+        if [ "$skip_next" = 1 ]; then skip_next=0; continue; fi
+        case "$word" in
+            -r|--requirement|-e|--editable) set +f; return 1 ;;
+            '>'|'>>'|'<'|'2>'|'2>>'|'&>') skip_next=1 ;;
+            *[\<\>]*|-*|.) ;;
+            *) set +f; return 0 ;;
+        esac
+    done
+    set +f
+    return 1
+}
+
+check_install() {
+    local seg="$1" b='(^|[^[:alnum:]_./-])'
+    if [[ "$seg" =~ ${b}(brew|apt|apt-get)\ +install($|[[:space:]]) ]] ||
+       [[ "$seg" =~ ${b}(cargo\ +(add|install)|gem\ +install|bundle\ +add|pipx\ +install|poetry\ +add|uv\ +add|(yarn|pnpm|bun)\ +add)($|[[:space:]]) ]] ||
+       [[ "$seg" =~ ${b}pub\ +(add|global\ +activate)($|[[:space:]]) ]]; then
+        decide ask "$INSTALL_REASON"
+    fi
+    if [[ "$seg" =~ ${b}(npm|pnpm|yarn|bun)\ +(install|i)[[:space:]](.*)$ ]]; then
+        names_a_package "${BASH_REMATCH[4]}" && decide ask "$INSTALL_REASON"
+    fi
+    if [[ "$seg" =~ ${b}pip[0-9.]*\ +install[[:space:]](.*)$ ]]; then
+        names_a_package "${BASH_REMATCH[2]}" && decide ask "$INSTALL_REASON"
+    fi
+}
+
+case "$tool" in
+    Bash)
+        if [[ "$cmd" =~ (^|[^[:alnum:]_./-])security\ +(find-generic-password|find-internet-password|dump-keychain|export)($|[[:space:]]) ]]; then
+            decide deny "$SECRET_REASON"
+        fi
+
+        set -f
+        old_ifs="$IFS"
+        IFS=$' \t\n\'"`=;|&<>(){},:$'
+        for token in $cmd; do
+            case "$token" in
+                .env|.env.*|.npmrc|.netrc|.git-credentials) ;;
+                # A bare dotted word such as .items.key is a jq filter, not a file.
+                .[!./]*) case "$token" in */*) ;; *) continue ;; esac ;;
+            esac
+            if is_secret_path "$token"; then
+                IFS="$old_ifs"
+                decide deny "$SECRET_REASON"
+            fi
+        done
+
+        segments="${cmd//&&/$'\n'}"
+        segments="${segments//||/$'\n'}"
+        segments="${segments//[;|]/$'\n'}"
+        IFS=$'\n'
+        for segment in $segments; do
+            IFS="$old_ifs"
+            check_install "$segment"
+        done
+        IFS="$old_ifs"
+        set +f
+        ;;
+    apply_patch)
+        set -f
+        old_ifs="$IFS"
+        IFS=$'\n'
+        for line in $cmd; do
+            case "$line" in
+                '*** Add File: '*|'*** Update File: '*|'*** Delete File: '*|'*** Move to: '*)
+                    if is_secret_path "${line#*: }"; then
+                        IFS="$old_ifs"
+                        decide deny "$SECRET_REASON"
+                    fi ;;
+            esac
+        done
+        IFS="$old_ifs"
+        set +f
+        ;;
+    *)
+        for candidate in "$file_path" "$path" "$pattern" "$glob"; do
+            [ -n "$candidate" ] || continue
+            is_secret_path "$candidate" && decide deny "$SECRET_REASON"
+        done
+        ;;
+esac
+
+exit 0

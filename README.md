@@ -73,8 +73,8 @@ verified in Codex. They are available when working in other projects as
 well. Run the installer again to refresh installed copies from this checkout.
 
 After installing, open `/hooks` in Codex CLI. Review and trust the
-`playbook-core` and `playbook-eng` SessionStart hooks, then start a new
-conversation. Installing a plugin does not trust its hooks; the always-on
+`playbook-core` and `playbook-eng` SessionStart and PreToolUse hooks, then
+start a new conversation. Installing a plugin does not trust its hooks; the always-on
 rules will not load until the hooks are trusted. Changed hook definitions
 need review again. See the [Codex hook guide](https://learn.chatgpt.com/docs/hooks).
 
@@ -111,8 +111,9 @@ plugins/<plugin>/
   skills/<skill>/SKILL.md             Shared skills, loaded on demand
   agents/<agent>.md                   Claude Code subagents, where present
   hooks/kernel.md                    Shared always-on rules, where present
-  hooks/hooks.json                    Shared SessionStart configuration
+  hooks/hooks.json                    Shared SessionStart and PreToolUse configuration
   hooks/session-start                 Shared context emitter
+  hooks/pre-tool-use                  Shared tool-call guard for the checkable rules
 scripts/install.sh                    Claude installer
 scripts/user-agents/explore.md        Explore override, installed by --explore-haiku
 scripts/codex-agents/*.toml           Codex explorer and reader, installed by --cheap-agents
@@ -130,6 +131,22 @@ Codex discovers `hooks/hooks.json` automatically. It supports the existing
 `CLAUDE_PLUGIN_ROOT` variable and the hook's JSON `additionalContext` output.
 The `startup|resume|clear|compact` matcher reloads the rules at those session
 boundaries. See [plugin packaging](https://developers.openai.com/plugins/build/plugins).
+
+A `PreToolUse` hook in the same two plugins backs the kernel rules that a
+tool call can be checked against. It needs `jq`; without it the hook lets
+every call through.
+
+| Rule | Plugin | Effect |
+|---|---|---|
+| Secret files | `playbook-core` | Denies a read, search, edit, or shell command that names one |
+| Installs | `playbook-core` | Prompts before a command that adds a package |
+| `git commit`, `git push` | `playbook-eng` | Prompts before either |
+| Large files | `playbook-eng` | Denies an unbounded read of a text file over 200 lines |
+| Build paths | `playbook-eng` | Denies `-derivedDataPath`, `--build-path`, `--scratch-path` |
+
+The hook is a guardrail, not a boundary: it matches shell commands by
+pattern, so the kernel text still carries the rule. Codex applies only part
+of it; `AGENTS.md` lists what differs.
 
 The dividing line: **a kernel rule is a gate** that changes whether work
 proceeds. **A skill is reference material** consulted while doing the work.

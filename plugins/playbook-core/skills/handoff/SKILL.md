@@ -43,6 +43,26 @@ each decision with its reasons, and the alternatives rejected.
 
 Previous snapshots are not copied here; git holds them.
 
+## Transcripts
+
+`docs/handoff/transcripts/YYYY-MM-DD-<topic>.jsonl`, one per handoff, named
+after that handoff's history entry. It is the harness's raw log of the
+session, copied as it stands when the handoff is written.
+
+- The path to copy is the one the session context gives under "Session
+  transcript". Copy it with `cp`; never open it to do so. Copy the main
+  session's file only, not subagent logs.
+- If the context names no transcript, skip the copy and say so in the
+  history entry. Never guess by picking the newest file in the harness's
+  folder; with two sessions open that is the wrong one.
+- The history entry ends with a line naming the transcript file.
+- Before the first copy, add `docs/handoff/transcripts/` to the project's
+  `.gitignore`. A transcript holds every tool output and pasted value from
+  the session, so it stays on disk and out of commits.
+- A session that hands off twice produces two files, and the second
+  contains the first. Nothing is pruned; old transcripts are deleted by
+  hand.
+
 ## Specs
 
 A spec describes the system as it is. When the design changes, rewrite the
@@ -85,3 +105,7 @@ line changes with it.
 A new session reads the snapshot and nothing else from these folders until a
 question needs history. Search history by filename and first line before
 opening any body.
+
+A transcript is the last resort, for the exact wording or output that a
+history entry summarises. Search it with `grep` for the lines needed; never
+read one whole.

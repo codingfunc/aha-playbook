@@ -1,5 +1,5 @@
 {
-  "description": "Injects the software engineering working agreement",
+  "description": "Injects the software engineering working agreement, and enforces its commit, large-read, and build-path rules on tool calls",
   "hooks": {
     "SessionStart": [
       {
@@ -8,6 +8,19 @@
           {
             "type": "command",
             "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/session-start\"",
+            "shell": "bash",
+            "async": false
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/pre-tool-use\"",
             "shell": "bash",
             "async": false
           }

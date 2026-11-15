@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# PreToolUse hook: enforces the engineering kernel rules that can be checked
+# from a tool call alone. Commits and pushes force a prompt; whole-file reads
+# of long files and redirected build paths are denied.
+# A guardrail, not a boundary: shell matching is by pattern, not by parse.
+
+MAX_UNBOUNDED_LINES=200
+
+command -v jq >/dev/null 2>&1 || {
+    echo "playbook-eng pre-tool-use: jq not found, rules not enforced" >&2
+    exit 0
+}
+
+# One jq process reads every field; @sh quoting makes the eval safe.
+fields=$(jq -r '
+    def s: if type == "string" then . else "" end;
+    @sh "tool=\(.tool_name | s) cmd=\(.tool_input.command | s) file_path=\(.tool_input.file_path | s) cwd=\(.cwd | s) bounded=\(if .tool_input.limit != null or .tool_input.pages != null then "1" else "" end)"
+' 2>/dev/null) || exit 0
+eval "$fields"
+
+decide() {
+    jq -n --arg decision "$1" --arg reason "$2" '{
+        hookSpecificOutput: {
+            hookEventName: "PreToolUse",
+            permissionDecision: $decision,
+            permissionDecisionReason: $reason
+        }
+    }'
+    exit 0
+}
+
+# Denies a read of a text file longer than the kernel's chunking threshold.
+deny_if_long() {
+    local file="$1" lines
+    [ -f "$file" ] || return 0
+    lines=$(wc -l < "$file" 2>/dev/null) || return 0
+    [ "$lines" -gt "$MAX_UNBOUNDED_LINES" ] || return 0
+    LC_ALL=C grep -Iq '' "$file" 2>/dev/null || return 0
+    decide deny "Engineering kernel, read large files in chunks: this file has $((lines)) lines. Locate the section by search, then read it with an offset and a limit."
+}
+
+case "$tool" in
+    Read)
+        [ -n "$bounded" ] || deny_if_long "$file_path"
+        ;;
+    Bash)
+        if [[ "$cmd" =~ (^|[^[:alnum:]_./-])git(\ +-[Cc]\ +[^ ]+|\ +--?[^ ]+)*\ +(commit|push)($|[[:space:]]) ]]; then
+            decide ask "Engineering kernel, never commit or push without explicit approval."
+        fi
+
+        if [[ "$cmd" =~ (^|[[:space:]])(-derivedDataPath|--build-path|--scratch-path)($|[[:space:]=]) ]]; then
+            decide deny "Engineering kernel, reuse the project's build directory: do not pass a new output path. If the project's own script names a build path, run that script."
+        fi
+
+        # The plain whole-file shell read: cat with one path and nothing else.
+        if [[ "$cmd" =~ ^[[:space:]]*cat[[:space:]]+([^[:space:]\|\;\&\<\>-][^[:space:]\|\;\&\<\>]*)[[:space:]]*$ ]]; then
+            target="${BASH_REMATCH[1]}"
+            target="${target#[\"\']}"
+            target="${target%[\"\']}"
+            case "$target" in
+                "~/"*) target="$HOME/${target#\~/}" ;;
+                /*) ;;
+                *) [ -n "$cwd" ] && target="$cwd/$target" ;;
+            esac
+            deny_if_long "$target"
+        fi
+        ;;
+esac
+
+exit 0

@@ -1,5 +1,5 @@
 {
-  "description": "Injects the core working agreement into every session",
+  "description": "Injects the core working agreement into every session, and enforces its secret-file and install rules on tool calls",
   "hooks": {
     "SessionStart": [
       {
@@ -8,6 +8,19 @@
           {
             "type": "command",
             "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/session-start\"",
+            "shell": "bash",
+            "async": false
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Read|Grep|Glob|Edit|Write|apply_patch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/pre-tool-use\"",
             "shell": "bash",
             "async": false
           }

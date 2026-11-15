@@ -27,6 +27,18 @@ always-on instruction file.
   by Claude Code and Codex. Codex supports the hook's SessionStart events,
   JSON context output, and `CLAUDE_PLUGIN_ROOT` compatibility variable.
   Codex users must review and trust the hooks before they run.
+- `hooks/pre-tool-use` in `playbook-core` and `playbook-eng` enforces the
+  kernel rules a tool call can be checked against. It is written for both
+  harnesses, but Codex applies less of it:
+  - Codex honours `deny`. The secret-file rule applies to shell commands and
+    `apply_patch`, and the build-path rule applies to shell commands.
+  - Codex parses the `ask` decision but does not support it yet. The commit,
+    push, and install rules return `ask`, so in Codex they rest on the kernel
+    text alone. What Codex does with an `ask` has not been tested here.
+  - Codex has no built-in file-read tool for a hook to match. The large-file
+    rule reaches Codex only through the plain `cat <path>` shell form.
+  - Checked against the Codex hook guide on 2026-11-14 with `codex-cli`
+    0.167.0. Recheck when Codex adds `ask` support.
 - There is no `commands/` directory. Claude Code exposes every skill as a
   slash command, and a skill shadows a command of the same name, so the
   quality-check workflow lives only in `skills/quality-check/SKILL.md`.
